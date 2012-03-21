@@ -1,4 +1,6 @@
 FullcalendarAssets::Application.routes.draw do
+  resource :calendar, :only => [:show]
+
   resources :events
 
   # The priority is based upon order of creation:
