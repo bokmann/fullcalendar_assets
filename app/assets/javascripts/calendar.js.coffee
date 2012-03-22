@@ -11,8 +11,6 @@ $(document).ready ->
       
     eventSources: [{
       url: '/events',
-      color: 'yellow',
-      textColor: 'black',
       ignoreTimezone: false
     }],
       
