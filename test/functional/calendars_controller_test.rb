@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CalendarControllerTest < ActionController::TestCase
+class CalendarsControllerTest < ActionController::TestCase
   test "should get show" do
     get :show
     assert_response :success
