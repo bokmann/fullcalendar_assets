@@ -18,3 +18,6 @@
 
 #Ignore my bundle location
 /vendor/ruby
+
+#Ignore Mac files
+.idea/
