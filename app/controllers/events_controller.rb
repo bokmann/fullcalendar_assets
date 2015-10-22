@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  
   # GET /events
   # GET /events.json
   def index
@@ -13,8 +15,6 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @event }
@@ -34,13 +34,12 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
   end
 
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(params[:event])
+    @event = Event.new(event_params)
 
     respond_to do |format|
       if @event.save
@@ -56,10 +55,8 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    @event = Event.find(params[:id])
-
     respond_to do |format|
-      if @event.update_attributes(params[:event])
+      if @event.update_attributes(event_params)
         format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
         format.json { head :no_content }
       else
@@ -72,12 +69,21 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
 
     respond_to do |format|
       format.html { redirect_to events_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:title, :starts_at, :ends_at, :all_day, :description)
+  end
+
+  def set_event
+    @event = Event.find(params[:id])
   end
 end
