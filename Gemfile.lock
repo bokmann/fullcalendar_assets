@@ -134,6 +134,7 @@ DEPENDENCIES
   jquery-rest-rails
   jquery-ui-rails
   json
+  momentjs-rails
   rails (= 4.2.3)
   sass-rails (~> 5.0)
   sqlite3

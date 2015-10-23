@@ -17,4 +17,4 @@ gem 'jquery-ui-rails'
 gem 'jquery-rest-rails'
 
 gem 'fullcalendar-rails'
-
+gem 'momentjs-rails'
