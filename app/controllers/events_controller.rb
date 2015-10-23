@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.scoped
+    @events = Event.all
     @events = Event.between(params['start'], params['end']) if (params['start'] && params['end'])
     respond_to do |format|
       format.html # index.html.erb
@@ -56,7 +56,7 @@ class EventsController < ApplicationController
   # PUT /events/1.json
   def update
     respond_to do |format|
-      if @event.update_attributes(event_params)
+      if @event.update(event_params)
         format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
         format.json { head :no_content }
       else
