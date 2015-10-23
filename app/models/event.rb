@@ -1,7 +1,11 @@
 class Event < ActiveRecord::Base
-  scope :between, lambda {|start_time, end_time|
-    {:conditions => ["? < starts_at < ?", Event.format_date(start_time), Event.format_date(end_time)] }
-  }
+
+  validates :starts_at, presence: true
+  validates :ends_at, presence: true
+
+  scope :between, -> (start_time, end_time) do
+    where("? < starts_at < ?", Event.format_date(start_time), Event.format_date(end_time))
+  end
 
   # need to override the json view to return what full_calendar is expecting.
   # http://arshaw.com/fullcalendar/docs/event_data/Event_Object/
@@ -17,7 +21,6 @@ class Event < ActiveRecord::Base
       :url => Rails.application.routes.url_helpers.event_path(id),
       #:color => "red"
     }
-
   end
 
   def self.format_date(date_time)
